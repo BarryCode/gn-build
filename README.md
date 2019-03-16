@@ -66,11 +66,20 @@ All variables described here are build args and can be overridden in the user's
 
 #### [`//build/toolchain/win/settings.gni`](toolchain/win/settings.gni)
 
-* `visual_studio_version` (default: 2013): The MSVC version to use.
+* `visual_studio_version` (default: "latest"): Desired version of Visual Studio.
+  If `visual_studio_path` is set, this must be the version of the VS installation
+  at the `visual_studio_path`.
+
+  Use "2013" for Visual Studio 2013 or "latest" for automatically choosing the
+  highest version (`visual_studio_path` must be unset in this case).
 * `visual_studio_path` (default: auto-detected): The path of your MSVC installation.
+  If this is set you must set visual_studio_version as well.
   Autodetected based on `visual_studio_version`.
-* `windows_sdk_path` (default: auto-detected):
-  Path of your Windows SDK installation.
+* `windows_sdk_version` (default: auto-detected): Windows SDK version to use.
+  Can either be a full Windows 10 SDK number (e.g. 10.0.10240.0),
+  "8.1" for the Windows 8.1 SDK or "default" for the default SDK selected by VS.
+* `clang_msc_ver` (default: auto-detected): MSVC version `clang-cl` will report
+  in `_MSC_VER`.
 
 ### POSIX toolchain
 
